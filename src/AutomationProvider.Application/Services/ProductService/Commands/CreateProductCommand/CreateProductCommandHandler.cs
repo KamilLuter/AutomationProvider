@@ -68,7 +68,7 @@ namespace AutomationProvider.Application.Services.ProductService.Commands.Create
                 );
 
             var productResult = await _productRepository.AddProductAsync(product, cancellationToken);
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             if (productResult is null)
             { 

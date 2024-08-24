@@ -1,4 +1,4 @@
-﻿using AutomationProvider.Domain.Order;
+﻿using AutomationProvider.Domain.OrderAggregate;
 using ErrorOr;
 using MediatR;
 using System;

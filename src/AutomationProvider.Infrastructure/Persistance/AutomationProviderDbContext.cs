@@ -1,6 +1,6 @@
 ﻿using AutomationProvider.Domain.CatalogAggregate;
 using AutomationProvider.Domain.Common.ValueObjects;
-using AutomationProvider.Domain.Order;
+using AutomationProvider.Domain.OrderAggregate;
 using AutomationProvider.Domain.OrderAggregate.Entities;
 using AutomationProvider.Domain.Product;
 using AutomationProvider.Domain.CustomerAggregate;

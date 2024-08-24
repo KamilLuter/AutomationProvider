@@ -1,7 +1,7 @@
 ﻿using AutomationProvider.Domain.Common.ValueObjects;
 using AutomationProvider.Domain.CustomerAggregate;
 using AutomationProvider.Domain.CustomerAggregate.ValueObjects;
-using AutomationProvider.Domain.Order;
+using AutomationProvider.Domain.OrderAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

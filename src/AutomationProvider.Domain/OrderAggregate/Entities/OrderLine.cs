@@ -1,6 +1,7 @@
 ﻿using AutomationProvider.Domain.Common.Errors;
 using AutomationProvider.Domain.Common.Models;
 using AutomationProvider.Domain.Common.ValueObjects;
+using AutomationProvider.Domain.OrderAggregate;
 using ErrorOr;
 
 namespace AutomationProvider.Domain.OrderAggregate.Entities
@@ -10,6 +11,7 @@ namespace AutomationProvider.Domain.OrderAggregate.Entities
         public Guid ProductId { get; private set; }
         public int Quantity { get; private set; }
         public Money Price { get; private set; }
+        public Order Order { get; set; }
         private OrderLine(
             Guid id
             , Guid productId

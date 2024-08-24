@@ -40,7 +40,7 @@ namespace AutomationProvider.Application.Services.ReviewService.Commands
 
             await _reviewsRepository.AddReviewAsync(review, cancellationToken);
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return review;
         }

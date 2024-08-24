@@ -41,7 +41,7 @@ namespace AutomationProvider.Application.Services.ReviewService.Commands
 
             await review.DeleteReviewAsync();
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return null;
         }

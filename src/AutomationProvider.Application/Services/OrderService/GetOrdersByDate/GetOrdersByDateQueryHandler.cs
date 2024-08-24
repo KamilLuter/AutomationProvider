@@ -2,7 +2,7 @@
 using AutomationProvider.Application.Common.Interfaces.Services;
 using AutomationProvider.Application.Services.OrderService.GetOrderDetails;
 using AutomationProvider.Domain.Common.Errors;
-using AutomationProvider.Domain.Order;
+using AutomationProvider.Domain.OrderAggregate;
 using ErrorOr;
 using MediatR;
 using System;

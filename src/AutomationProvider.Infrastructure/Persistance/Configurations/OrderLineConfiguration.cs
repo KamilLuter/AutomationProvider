@@ -1,4 +1,4 @@
-﻿using AutomationProvider.Domain.Order;
+﻿using AutomationProvider.Domain.OrderAggregate;
 using AutomationProvider.Domain.OrderAggregate.Entities;
 using AutomationProvider.Domain.Product;
 using Microsoft.EntityFrameworkCore;

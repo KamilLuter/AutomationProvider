@@ -79,7 +79,7 @@ namespace AutomationProvider.Application.Services.AuthenticationService.Commands
                 return Errors.Customer.RegistrationFailed;
 
             await _customerRepository.CreateAsync(customer.Value, cancellationToken);
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             var token = _jwtTokenGenerator.GenerateToken(
                 customer.Value.Id,

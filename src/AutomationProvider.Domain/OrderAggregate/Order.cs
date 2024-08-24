@@ -6,7 +6,7 @@ using AutomationProvider.Domain.Common.Errors;
 using ErrorOr;
 using System.Diagnostics.CodeAnalysis;
 
-namespace AutomationProvider.Domain.Order
+namespace AutomationProvider.Domain.OrderAggregate
 {
     public sealed class Order : AggregateRoot<Guid>
     {

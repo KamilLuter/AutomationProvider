@@ -1,7 +1,7 @@
 ﻿using AutomationProvider.Application.Common.Interfaces.Persistance;
 using AutomationProvider.Application.Services.OrderService.CreateOrder;
 using AutomationProvider.Contracts.Orders;
-using AutomationProvider.Domain.Order;
+using AutomationProvider.Domain.OrderAggregate;
 using ErrorOr;
 using Moq;
 using FluentAssertions;

@@ -153,7 +153,31 @@ namespace AutomationProvider.Infrastructure.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("AutomationProvider.Domain.Order.Order", b =>
+            modelBuilder.Entity("AutomationProvider.Domain.OrderAggregate.Entities.OrderLine", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderLines", (string)null);
+                });
+
+            modelBuilder.Entity("AutomationProvider.Domain.OrderAggregate.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -173,33 +197,6 @@ namespace AutomationProvider.Infrastructure.Migrations
                     b.HasIndex("CustomerId");
 
                     b.ToTable("Orders", (string)null);
-                });
-
-            modelBuilder.Entity("AutomationProvider.Domain.OrderAggregate.Entities.OrderLine", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("OrderLine")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderLine");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderLines", (string)null);
                 });
 
             modelBuilder.Entity("AutomationProvider.Domain.Product.Product", b =>
@@ -544,7 +541,7 @@ namespace AutomationProvider.Infrastructure.Migrations
 
             modelBuilder.Entity("AutomationProvider.Domain.Common.ValueObjects.Address", b =>
                 {
-                    b.HasOne("AutomationProvider.Domain.Order.Order", null)
+                    b.HasOne("AutomationProvider.Domain.OrderAggregate.Order", null)
                         .WithOne("ShippingAddress")
                         .HasForeignKey("AutomationProvider.Domain.Common.ValueObjects.Address", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -561,43 +558,11 @@ namespace AutomationProvider.Infrastructure.Migrations
                     b.Navigation("Address");
                 });
 
-            modelBuilder.Entity("AutomationProvider.Domain.Order.Order", b =>
-                {
-                    b.HasOne("AutomationProvider.Domain.CustomerAggregate.Customer", null)
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.OwnsOne("AutomationProvider.Domain.Common.ValueObjects.Money", "Price", b1 =>
-                        {
-                            b1.Property<Guid>("OrderId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("Currency")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(3)")
-                                .HasColumnName("PriceCurrency");
-
-                            b1.Property<decimal>("Value")
-                                .HasColumnType("decimal(18,2)")
-                                .HasColumnName("PriceValue");
-
-                            b1.HasKey("OrderId");
-
-                            b1.ToTable("Orders");
-
-                            b1.WithOwner()
-                                .HasForeignKey("OrderId");
-                        });
-
-                    b.Navigation("Price")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("AutomationProvider.Domain.OrderAggregate.Entities.OrderLine", b =>
                 {
-                    b.HasOne("AutomationProvider.Domain.Order.Order", null)
+                    b.HasOne("AutomationProvider.Domain.OrderAggregate.Order", "Order")
                         .WithMany("OrderLines")
-                        .HasForeignKey("OrderLine")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -627,6 +592,40 @@ namespace AutomationProvider.Infrastructure.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("OrderLineId");
+                        });
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Price")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AutomationProvider.Domain.OrderAggregate.Order", b =>
+                {
+                    b.HasOne("AutomationProvider.Domain.CustomerAggregate.Customer", null)
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.OwnsOne("AutomationProvider.Domain.Common.ValueObjects.Money", "Price", b1 =>
+                        {
+                            b1.Property<Guid>("OrderId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Currency")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(3)")
+                                .HasColumnName("PriceCurrency");
+
+                            b1.Property<decimal>("Value")
+                                .HasColumnType("decimal(18,2)")
+                                .HasColumnName("PriceValue");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Orders");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
                         });
 
                     b.Navigation("Price")
@@ -744,7 +743,7 @@ namespace AutomationProvider.Infrastructure.Migrations
                     b.Navigation("SubCatalogs");
                 });
 
-            modelBuilder.Entity("AutomationProvider.Domain.Order.Order", b =>
+            modelBuilder.Entity("AutomationProvider.Domain.OrderAggregate.Order", b =>
                 {
                     b.Navigation("OrderLines");
 

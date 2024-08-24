@@ -1,5 +1,5 @@
 ﻿using AutomationProvider.Application.Common.Interfaces.Persistance;
-using AutomationProvider.Domain.Order;
+using AutomationProvider.Domain.OrderAggregate;
 using ErrorOr;
 using MediatR;
 using AutomationProvider.Domain.Common.Errors;

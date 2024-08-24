@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  automationprovider.api:
+    image: ${DOCKER_REGISTRY-}automationproviderapi
+    build:
+      context: .
+      dockerfile: src/AutomationProvider.Api/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - sqlserver
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=AutomationProviderDb;User Id=sa;Password=StrongPassword123@;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+    networks: 
+      - mynetwork
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "StrongPassword123@"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+      - ./backup:/var/opt/mssql/backup
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  sqlserver-data:

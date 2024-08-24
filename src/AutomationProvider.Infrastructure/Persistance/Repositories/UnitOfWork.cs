@@ -9,9 +9,9 @@ namespace AutomationProvider.Infrastructure.Persistance.Repositories
         {
             _context = context;
         }
-        public async Task SaveChangesAsync()
+        public async Task SaveChangesAsync(CancellationToken cancellationToken)
         {
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }

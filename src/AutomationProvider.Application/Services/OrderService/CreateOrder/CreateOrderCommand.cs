@@ -1,6 +1,6 @@
 ﻿using AutomationProvider.Application.Idempotency;
 using AutomationProvider.Contracts.Orders;
-using AutomationProvider.Domain.Order;
+using AutomationProvider.Domain.OrderAggregate;
 using ErrorOr;
 
 namespace AutomationProvider.Application.Services.OrderService.CreateOrder

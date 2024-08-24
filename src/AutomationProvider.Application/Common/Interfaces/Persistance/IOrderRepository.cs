@@ -1,9 +1,4 @@
-﻿using AutomationProvider.Domain.Order;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutomationProvider.Domain.OrderAggregate;
 
 namespace AutomationProvider.Application.Common.Interfaces.Persistance
 {

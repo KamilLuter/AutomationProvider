@@ -25,9 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\AutomationProvider.Application\AutomationProvider.Application.csproj" />
-    <ProjectReference Include="..\src\AutomationProvider.Contracts\AutomationProvider.Contracts.csproj" />
-    <ProjectReference Include="..\src\AutomationProvider.Domain\AutomationProvider.Domain.csproj" />
+    <ProjectReference Include="..\..\src\AutomationProvider.Application\AutomationProvider.Application.csproj" />
+    <ProjectReference Include="..\..\src\AutomationProvider.Contracts\AutomationProvider.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\AutomationProvider.Domain\AutomationProvider.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 using AutomationProvider.Application.Services.ProductService.Queries.GetProductDetailedData;
 using AutomationProvider.Domain.Common.Errors;
 using AutomationProvider.Domain.Common.ValueObjects;
-using AutomationProvider.Domain.Order;
+using AutomationProvider.Domain.OrderAggregate;
 using AutomationProvider.Domain.OrderAggregate.Entities;
 using ErrorOr;
 using MediatR;
@@ -67,7 +67,7 @@ namespace AutomationProvider.Application.Services.OrderService.CreateOrder
             if (!order.IsError)
             {
                 await _orderRepository.CreateOrderAsync(order.Value, cancellationToken);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.SaveChangesAsync(cancellationToken);
             }
 
             return order;
