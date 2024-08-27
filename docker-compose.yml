@@ -17,7 +17,7 @@ services:
       - mynetwork
 
   sqlserver:
-    image: mcr.microsoft.com/mssql/server:2019-latestdocker ps
+    image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "StrongPassword123@"
