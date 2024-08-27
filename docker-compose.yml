@@ -17,7 +17,7 @@ services:
       - mynetwork
 
   sqlserver:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    image: mcr.microsoft.com/mssql/server:2019-latestdocker ps
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "StrongPassword123@"
@@ -26,6 +26,7 @@ services:
     volumes:
       - sqlserver-data:/var/opt/mssql
       - ./backup:/var/opt/mssql/backup
+
     networks:
       - mynetwork
 
